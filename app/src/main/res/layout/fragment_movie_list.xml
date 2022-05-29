@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:shimmer="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/container_user_list"
+    android:id="@+id/container_movie_list"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 

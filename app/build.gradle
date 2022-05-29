@@ -19,8 +19,22 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    signingConfigs {
+        release {
+            storeFile file('../open-movie-keystore.jks')
+            storePassword "password"
+            keyAlias 'key'
+            keyPassword "password"
+        }
+    }
+
+
     buildTypes {
         release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        debug {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
@@ -35,7 +49,15 @@ android {
     buildFeatures {
         viewBinding true
     }
-
+    android.applicationVariants.all { variant ->
+        variant.outputs.all { output ->
+            def baseName = "Open_Movie_Database"
+            def builtType = variant.buildType.name
+            def versionName = variant.versionName
+            def versionCode = variant.versionCode
+            outputFileName = "${baseName}_${builtType}_${versionName}_${versionCode}.apk"
+        }
+    }
 }
 
 dependencies {
