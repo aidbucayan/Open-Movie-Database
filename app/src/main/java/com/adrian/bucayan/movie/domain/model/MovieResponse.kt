@@ -10,8 +10,8 @@ import kotlinx.parcelize.Parcelize
 data class MovieResponse(
     var response: String?,
     var search: List<Search>?,
-    var totalResults: String?
-
+    var totalResults: String?,
+    var error: String? = ""
 ): Parcelable {
 
 }

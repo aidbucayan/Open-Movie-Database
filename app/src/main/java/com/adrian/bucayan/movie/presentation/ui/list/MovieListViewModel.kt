@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.adrian.bucayan.movie.common.Resource
 import com.adrian.bucayan.movie.domain.model.MovieResponse
-import com.adrian.bucayan.movie.domain.use_case.SearchMovieUseCase
+import com.adrian.bucayan.movie.domain.use_case.SearchMovieByTitleUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.launchIn
@@ -17,24 +17,24 @@ import javax.inject.Inject
 @ExperimentalCoroutinesApi
 @HiltViewModel
 class MovieListViewModel @Inject constructor(
-    private val searchMovieUseCase: SearchMovieUseCase) : ViewModel() {
+    private val searchMovieByTitleUseCase: SearchMovieByTitleUseCase) : ViewModel() {
 
     private val _dataStateMovie: MutableLiveData<Resource<MovieResponse>> = MutableLiveData()
 
     val dataStateMovie: LiveData<Resource<MovieResponse>> = _dataStateMovie
 
-    fun setGetMovieEvent(getMovieEvent: GetMovieEvent, searchedText: String) {
+    fun setGetMovieEvent(movieIntent: MovieIntent, searchedText: String) {
         viewModelScope.launch {
-            when(getMovieEvent) {
-                is GetMovieEvent.GetGetMovieEvents -> {
-                    searchMovieUseCase(searchedText)
+            when(movieIntent) {
+                is MovieIntent.GetMovieIntents -> {
+                    searchMovieByTitleUseCase(searchedText)
                         .onEach { dataStateMovie ->
                             _dataStateMovie.value = dataStateMovie
                         }
                         .launchIn(viewModelScope)
                 }
 
-                is GetMovieEvent.None -> {
+                is MovieIntent.None -> {
 
                 }
             }
@@ -42,9 +42,9 @@ class MovieListViewModel @Inject constructor(
     }
 }
 
-sealed class GetMovieEvent {
+sealed class MovieIntent {
 
-    object GetGetMovieEvents: GetMovieEvent()
+    object GetMovieIntents: MovieIntent()
 
-    object None: GetMovieEvent()
+    object None: MovieIntent()
 }

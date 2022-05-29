@@ -11,12 +11,12 @@ import retrofit2.HttpException
 import java.io.IOException
 import javax.inject.Inject
 
-class SearchMovieUseCase @Inject constructor(private val repository: MovieRepository) {
+class SearchMovieByTitleUseCase @Inject constructor(private val repository: MovieRepository) {
 
     operator fun invoke(searchedText: String): Flow<Resource<MovieResponse>> = flow {
         try {
             emit(Resource.Loading<MovieResponse>())
-            val getSearchedMovie = repository.get(searchedText).toMovieResponse()
+            val getSearchedMovie = repository.getMovieListBySearch(searchedText).toMovieResponse()
             emit(Resource.Success<MovieResponse>(getSearchedMovie))
         } catch(e: HttpException) {
             emit(Resource.Error<MovieResponse>(R.string.oops_something_went_wrong.toString()))

@@ -7,4 +7,5 @@ object Constants {
     const val APP_VERSION = BuildConfig.VERSION_NAME
     const val BASE_URL = "http://www.omdbapi.com/"
     const val API_KEY = "e83ba198"
+    const val SEARCH = "search"
 }

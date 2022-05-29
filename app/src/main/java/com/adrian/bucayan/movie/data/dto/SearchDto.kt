@@ -1,6 +1,5 @@
 package com.adrian.bucayan.movie.data.dto
 
-import com.adrian.bucayan.movie.domain.model.MovieResponse
 import com.adrian.bucayan.movie.domain.model.Search
 import com.fasterxml.jackson.annotation.JsonProperty
 

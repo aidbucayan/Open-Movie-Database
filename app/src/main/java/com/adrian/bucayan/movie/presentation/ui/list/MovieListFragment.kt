@@ -1,14 +1,15 @@
 package com.adrian.bucayan.movie.presentation.ui.list
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.adrian.bucayan.movie.R
+import com.adrian.bucayan.movie.common.Constants
 import com.adrian.bucayan.movie.common.Resource
 import com.adrian.bucayan.movie.databinding.FragmentMovieListBinding
 import com.adrian.bucayan.movie.domain.model.MovieResponse
@@ -79,7 +80,7 @@ class MovieListFragment : Fragment(R.layout.fragment_movie_list) {
 
     private fun showSearchResult(query: String?) {
         if (query != null) {
-            viewModel.setGetMovieEvent(GetMovieEvent.GetGetMovieEvents, query)
+            viewModel.setGetMovieEvent(MovieIntent.GetMovieIntents, query)
         }
     }
 
@@ -94,41 +95,15 @@ class MovieListFragment : Fragment(R.layout.fragment_movie_list) {
             movieListAdapter = MovieListAdapter()
             movieListAdapter!!.toSelectSearch = this@MovieListFragment::gotoSelectedMovie
             adapter = movieListAdapter
-
-            /*addOnScrollListener(object : RecyclerView.OnScrollListener() {
-
-                override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
-                    super.onScrollStateChanged(recyclerView, newState)
-                }
-
-                @SuppressLint("TimberArgCount")
-                override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-                    super.onScrolled(recyclerView, dx, dy)
-
-                    val linearLayoutManager = layoutManager as LinearLayoutManager
-                    val lastVisibleItemPosition = linearLayoutManager.findLastVisibleItemPosition()
-                    Timber.e("lastVisibleItemPosition = %s", lastVisibleItemPosition)
-                    val listItemIndex = recipeListAdapter!!.getListItems().size - 1
-                    Timber.e("listItemIndex = %s", listItemIndex)
-
-                    var limitOffset = page?.times(PAGE_SIZE)
-                    Timber.e("listItemIndex = %s", listItemIndex)
-
-                    if (binding.linearProgressBarLoadMore.visibility == View.GONE
-                        && (lastVisibleItemPosition) == listItemIndex
-                        && limitOffset!! < totalItemCount) {
-                        //displayLoadMoreProgressBar(true)
-                        var newPage = page?.plus(1)
-                        apiCall(newPage)
-                    }
-                }
-            })*/
         }
 
     }
 
     private fun gotoSelectedMovie(search: Search, position: Int?) {
         Timber.e("search = %s", search.title)
+        val bundle = Bundle()
+        bundle.putParcelable(Constants.SEARCH, search)
+        findNavController().navigate(R.id.action_movieListFragment_to_movieDetailsFragment, bundle)
     }
 
     private fun subscribeObservers() {
@@ -140,8 +115,16 @@ class MovieListFragment : Fragment(R.layout.fragment_movie_list) {
                     displayLoading(false)
                     binding.movieRecyclerview.visibility = View.VISIBLE
                     binding.tvEmptyMsg.visibility = View.GONE
-                    Timber.d("search list = " + dataStateMovie.data?.search!!.size)
-                    movieListAdapter!!.submitList(dataStateMovie.data.search!!)
+
+                    val search : List<Search>? =  dataStateMovie.data?.search
+                    if (!search.isNullOrEmpty()) {
+                        movieListAdapter!!.submitList(search)
+                    } else {
+                        Toast.makeText(requireActivity().applicationContext,
+                            "ERROR : " + dataStateMovie.data?.error, Toast.LENGTH_SHORT
+                        ).show()
+                    }
+
                 }
 
                 is Resource.Error -> {

@@ -14,7 +14,11 @@ data class MovieResponseDto(
     var search: List<SearchDto>?,
 
     @JsonProperty("totalResults")
-    var totalResults: String?
+    var totalResults: String?,
+
+    @JsonProperty("Error")
+    var error: String? = ""
+
 
 )
 fun MovieResponseDto.toMovieResponse(): MovieResponse {
@@ -22,6 +26,7 @@ fun MovieResponseDto.toMovieResponse(): MovieResponse {
         response = response,
         search = search?.map { it.toSearch() },
         totalResults = totalResults,
+        error = error
     )
 }
 

@@ -1,13 +1,144 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".presentation.ui.details.MovieDetailsFragment">
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/tv_movie_details"
+    android:background="@color/colorBaseLight"
+    android:orientation="vertical">
 
-    <TextView
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Hello" />
+        android:layout_height="wrap_content">
 
-</FrameLayout>
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/tv_movie_details_poster"
+                android:layout_width="match_parent"
+                android:layout_height="400dp"
+                android:scaleType="fitXY"
+                android:background="@color/colorPrimary"
+                android:visibility="visible" />
+
+            <TextView
+                android:id="@+id/tv_movie_details_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start|center"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="5dp"
+                android:gravity="start"
+                android:maxLines="3"
+                android:text="Lorem ipsum dolor si"
+                android:textColor="@color/colorTextPrimary"
+                android:textSize="20sp"
+                android:textStyle="normal" />
+
+            <TextView
+                android:id="@+id/tv_movie_items_year"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start|center"
+                android:layout_marginStart="16dp"
+                android:layout_marginBottom="5dp"
+                android:gravity="start"
+                android:maxLines="3"
+                android:text="Year : 0000"
+                android:textColor="@color/colorTextPrimary"
+                android:textSize="16sp"
+                android:textStyle="normal" />
+
+            <TextView
+                android:id="@+id/tv_movie_items_type"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start|center"
+                android:layout_marginStart="16dp"
+                android:layout_marginBottom="5dp"
+                android:gravity="start"
+                android:maxLines="3"
+                android:text="Type : 0000"
+                android:textColor="@color/colorTextPrimary"
+                android:textSize="16sp"
+                android:textStyle="normal" />
+
+
+            <TextView
+                android:id="@+id/tv_movie_items_imdbID"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start|center"
+                android:layout_marginStart="16dp"
+                android:layout_marginBottom="5dp"
+                android:gravity="start"
+                android:maxLines="3"
+                android:text="IMDb  ID : 0000"
+                android:textColor="@color/colorTextPrimary"
+                android:textSize="16sp"
+                android:textStyle="normal" />
+
+            <TextView
+                android:id="@+id/tv_movie_items_long_plot"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start|center"
+                android:layout_marginStart="16dp"
+                android:layout_marginBottom="5dp"
+                android:gravity="start"
+                android:maxLines="3"
+                android:text="Plot : "
+                android:textColor="@color/colorTextPrimary"
+                android:textSize="16sp"
+                android:textStyle="normal" />
+
+            <TextView
+                android:id="@+id/tv_movie_items_actors"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start|center"
+                android:layout_marginStart="16dp"
+                android:layout_marginBottom="5dp"
+                android:gravity="start"
+                android:maxLines="5"
+                android:text="Actors : "
+                android:textColor="@color/colorTextPrimary"
+                android:textSize="16sp"
+                android:textStyle="normal" />
+
+            <TextView
+                android:id="@+id/tv_movie_items_language"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start|center"
+                android:layout_marginStart="16dp"
+                android:layout_marginBottom="5dp"
+                android:gravity="start"
+                android:maxLines="3"
+                android:text="Language(s) : "
+                android:textColor="@color/colorTextPrimary"
+                android:textSize="16sp"
+                android:textStyle="normal" />
+
+            <TextView
+                android:id="@+id/tv_movie_items_duration"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start|center"
+                android:layout_marginStart="16dp"
+                android:layout_marginBottom="5dp"
+                android:gravity="start"
+                android:maxLines="3"
+                android:text="Duration : "
+                android:textColor="@color/colorTextPrimary"
+                android:textSize="16sp"
+                android:textStyle="normal" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+    </ScrollView>
+
+</LinearLayout>
