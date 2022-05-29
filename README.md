@@ -27,7 +27,9 @@ Run the following command to build the project
 ```
 or
 
+```sh
 ./gradlew assembleProdRelease
+```
 Installation
 Installing apk to device can be done with the following commands. Note that debug apk is used in the commands.
 
