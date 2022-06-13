@@ -20,27 +20,3 @@ The project used MVI and Repository design pattern approach. State in app is def
                                                                                              
 - [Coutine Flow](https://developer.android.com/kotlin/flow) - In coroutines, a flow is a type that can emit multiple values sequentially.
                            
-## Setup
-Run the following command to build the project
-```sh
-./gradlew assembleDevDebug
-```
-or
-
-```sh
-./gradlew assembleProdRelease
-```
-Installation
-Installing apk to device can be done with the following commands. Note that debug apk is used in the commands.
-
-via Gradle
-```sh
-./gradlew installDevDebug
-```
-via adb tool
-adb install build/outputs/apk/debug/MyRecipe_dev_debug_1.0.apk
-Linting
-Lint issues or warnings can be checked by running
-```sh
-./gradlew lint
-```
