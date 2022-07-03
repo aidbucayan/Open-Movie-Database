@@ -1,9 +1,9 @@
 # Open-Movie-Database
-This app consumes OMDB public api, which you can search movie and view it's details. 
+This app consumes Beeceptor public api, which you can add, edit, delete and get all the list of Contacts. 
 
 This android project is written in Kotlin which demonstrates MVVM/MVI design architecture.
 
-- Retrieve data from OMDB api with Retrofit
+- Retrieve data from Beeceptor api with Retrofit
 - Display movie data in UI.
 
 Design Pattern
