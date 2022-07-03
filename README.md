@@ -1,9 +1,9 @@
 # Open-Movie-Database
-This app consumes Beeceptor public api, which you can add, edit, delete and get all the list of Contacts. 
+This app consumes OMDB public api, which you can search movie and view it's details. 
 
 This android project is written in Kotlin which demonstrates MVVM/MVI design architecture.
 
-- Retrieve data from Beeceptor api with Retrofit
+- Retrieve data from OMDB api with Retrofit
 - Display movie data in UI.
 
 Design Pattern
@@ -19,4 +19,3 @@ The project used MVI and Repository design pattern approach. State in app is def
 - [Material](https://material.io/) Design - Google's material design ui.  
                                                                                              
 - [Coutine Flow](https://developer.android.com/kotlin/flow) - In coroutines, a flow is a type that can emit multiple values sequentially.
-                           
